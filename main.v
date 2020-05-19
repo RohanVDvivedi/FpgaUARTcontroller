@@ -33,35 +33,19 @@ reg [1:0] TC_state;
 
 // pipeline stage 0, setup address and write enable signal logic
 always@(posedge clk) begin
-	if(TC) begin
-		if(TC_state == 2'b00 && send) begin
+	if(TC && !write_enable_0) begin
+		if(address == last_address && send) begin
 			address <= start_address;
 			write_enable_0 <= 1;
-			TC_state <= 2'b10;
 		end
-		else if(TC_state == 2'b01) begin
-			if(address == last_address) begin
-				address <= start_address;
-			end
-			else begin
-				address <= address + 1;
-			end
+		else if (address < last_address) begin
+			address <= address + 1;
 			write_enable_0 <= 1;
-			TC_state <= 2'b10;
-		end
-		else if(TC_state == 2'b11) begin
-			if(address == last_address && !send) begin
-				TC_state <= 2'b00;
-			end
-			else begin
-				TC_state <= 2'b01;
-			end
 		end
 	end
 	else begin
 		address <= address;
 		write_enable_0 <= 0;
-		TC_state <= 2'b11;
 	end
 end
 
