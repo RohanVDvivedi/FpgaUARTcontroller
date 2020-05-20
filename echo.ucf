@@ -1,0 +1,13 @@
+//sw2
+NET "echo_button_bar"	LOC = T8 	| IOSTANDARD = LVTTL;
+//sw3
+NET "reset_bar"		LOC = R7 	| IOSTANDARD = LVTTL;
+//d1
+NET "RC_bar"			LOC = T9 	| IOSTANDARD = LVTTL;
+//d3
+NET "TC_bar"	 		LOC = R9 	| IOSTANDARD = LVTTL;
+//clk
+NET "clk"				LOC = A10	| IOSTANDARD = LVTTL;
+
+NET "TX"					LOC = E12	| IOSTANDARD = LVTTL;
+NET "RX"					LOC = E13	| IOSTANDARD = LVTTL;
